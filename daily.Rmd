@@ -1,6 +1,4 @@
-# The daily COVID-19 data of Chile.
-
-
+# The daily COVID-19 cases data of Chile.
 
 
 
@@ -11,4 +9,28 @@ library(coronavirus)
 library(DT)
 library(ggplot2)
 library(plotly)
+data(coronavirus)
 ```
+
+
+```{r interactive-table}
+covid_chile <- coronavirus %>% 
+  filter(country == "Chile") %>% 
+  select(date, type, cases)
+
+covid_chile_wide <- covid_chile %>% 
+  pivot_wider(names_from = type, values_from = cases)
+
+datatable(covid_chile_wide, 
+          extensions = 'Responsive', 
+          caption = "Daily COVID-19 Cases in Chile")
+```
+
+
+
+
+
+
+
+
+

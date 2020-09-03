@@ -9,7 +9,7 @@ navbar:
        href: trends.html
 output: 
   html_document:
-    theme: darkly
+    theme: sandstone
     include:
       after_body: footer.html
     css: styles.ss
