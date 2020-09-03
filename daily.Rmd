@@ -1,0 +1,14 @@
+# The daily COVID-19 data of Chile.
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(coronavirus)
+library(DT)
+library(ggplot2)
+library(plotly)
+```
