@@ -1,13 +1,23 @@
 # Welcome to my Coronavirus Tracking Website!
-## In this website, you can get the COVID-19 data of Chile and check the trends.
 
+# 
+
+### In this website, you can get the COVID-19 data of Chile and check the trends.
+
+#
 
 ### Analysis Country
 
 Chile, officially the Republic of Chile, is a country in western South America. It occupies a long, narrow strip of land between the Andes to the east and the Pacific Ocean to the west. Chile covers an area of 756,096 square kilometres and has a population of 17.5 million as of 2017.
 
-
+#
 
 ### Data Source
 
-The first case reported in Chile was on 23 Feb, 2020.
+- This webpage uses the COVID-19 data from the R package "coronavirus" which maitained by Rami Krispin.
+
+- The data source of this package is the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus [website](https://systems.jhu.edu/research/public-health/ncov/). 
+
+- This data set contains daily COVID-19 data of each country and is still updating so that we can track the latest COVID-19 data.
+
+- The variables of this data set are: `r names(coronavirus)`. As there's no province level data for Chile, we just concentrate on the type of cases and the number. The first case reported in Chile was on 23 Feb, 2020. So this webpage will display and discuss the daily cases after that day.
