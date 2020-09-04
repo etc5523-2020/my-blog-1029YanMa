@@ -7,11 +7,13 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(coronavirus)
 library(DT)
-library(ggplot2)
-library(plotly)
+library(lubridate)
 data(coronavirus)
 ```
 
+The following data table shows the number of new cases confirmed, recovered, dead every day in Chile. And it also contains the recover and death radio calculated from cumulative cases. On 1, Sep, the recover ratio is about 93% and the death ratio is about 3%. The total number of confirmed cases in Chile is 413,145.
+
+You can try to type a date you are interested in and see the data of that day.
 
 ```{r interactive-table}
 covid_chile <- coronavirus %>% 
@@ -19,11 +21,24 @@ covid_chile <- coronavirus %>%
   select(date, type, cases)
 
 covid_chile_wide <- covid_chile %>% 
-  pivot_wider(names_from = type, values_from = cases)
+  pivot_wider(names_from = type, values_from = cases) 
 
-datatable(covid_chile_wide, 
-          extensions = 'Responsive', 
-          caption = "Daily COVID-19 Cases in Chile")
+ratios <- covid_chile_wide %>% 
+  filter(date > as.Date("2020-02-22")) %>% 
+  mutate(recover_cum = cumsum(recovered), 
+         confirm_cum = cumsum(confirmed), 
+         death_cum = cumsum(death))
+
+ratios <- ratios %>% 
+  mutate(recover_ratio = round(recover_cum / confirm_cum, 2), 
+         death_ratio = round(death_cum / confirm_cum, 2))
+
+ratios %>% 
+  select(date, confirmed, confirm_cum, recovered, recover_ratio, 
+         death, death_ratio) %>% 
+  arrange(desc(date)) %>% 
+  datatable(extensions = 'Responsive', 
+            caption = "Daily COVID-19 Cases in Chile")
 ```
 
 
