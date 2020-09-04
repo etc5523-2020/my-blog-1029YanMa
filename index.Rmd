@@ -8,13 +8,13 @@
 
 ### Analysis Country
 
-Chile, officially the Republic of Chile, is a country in western South America. It occupies a long, narrow strip of land between the Andes to the east and the Pacific Ocean to the west. Chile covers an area of 756,096 square kilometres and has a population of 17.5 million as of 2017.
+Chile, officially the Republic of Chile, is a country in western South America. It occupies a long, narrow strip of land between the Andes to the east and the Pacific Ocean to the west. Chile covers an area of 756,096 square kilometers and has a population of 17.5 million as of 2017.
 
 #
 
 ### Data Source
 
-- This webpage uses the COVID-19 data from the R package "coronavirus" which maitained by Rami Krispin.
+- This webpage uses the COVID-19 data from the R package "coronavirus" which maintained by Rami Krispin.
 
 - The data source of this package is the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus [website](https://systems.jhu.edu/research/public-health/ncov/). 
 

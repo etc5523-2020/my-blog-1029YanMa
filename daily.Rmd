@@ -11,7 +11,7 @@ library(lubridate)
 data(coronavirus)
 ```
 
-The following data table shows the number of new cases confirmed, recovered, dead every day in Chile. And it also contains the recover and death radio calculated from cumulative cases. On 1, Sep, the recover ratio is about 93% and the death ratio is about 3%. The total number of confirmed cases in Chile is 413,145.
+The following data table shows the number of new cases confirmed, recovered, dead every day in Chile. And it also contains the recover and death radio calculated from cumulative cases. On 1, Sept, the recover ratio is about 93% and the death ratio is about 3%. The total number of confirmed cases in Chile is 413,145.
 
 You can try to type a date you are interested in and see the data of that day.
 
