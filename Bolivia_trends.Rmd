@@ -24,7 +24,7 @@ covid_bolivia_wide <- covid_bolivia %>%
   pivot_wider(names_from = type, values_from = cases) 
 
 ratios_bolivia <- covid_bolivia_wide %>% 
-  filter(date > as.Date("2020-02-22")) %>% 
+  filter(date > as.Date("2020-03-10")) %>% 
   mutate(recover_cum = cumsum(recovered), 
          confirm_cum = cumsum(confirmed), 
          death_cum = cumsum(death))

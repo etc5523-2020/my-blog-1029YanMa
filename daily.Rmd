@@ -5,9 +5,14 @@
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
+devtools::install_github("RamiKrispin/coronavirus")
 library(coronavirus)
+update_dataset()
 library(DT)
 library(lubridate)
+library(kableExtra)
+library(plotly)
+library(gridExtra)
 data(coronavirus)
 ```
 
@@ -40,6 +45,116 @@ ratios %>%
   datatable(extensions = 'Responsive', 
             caption = "Daily COVID-19 Cases in Chile")
 ```
+
+# Check the trends of COVID-19 cases in Chile.
+
+
+
+#
+#
+
+```{r summary-cases}
+covid_chile <- coronavirus %>% 
+  filter(country == "Chile") %>% 
+  select(date, type, cases)
+
+covid_chile_wide <- covid_chile %>% 
+  pivot_wider(names_from = type, values_from = cases) 
+
+chile_cases <- covid_chile_wide %>% 
+  filter(date > as.Date("2020-02-22"))
+
+summary_cases <- chile_cases %>% 
+  summarise(confirmed_sum = sum(confirmed), 
+            death_sum = sum(death), 
+            recovered_sum = sum(recovered), 
+            confirmed_sd = sd(chile_cases$confirmed), 
+            death_sd = sd(chile_cases$death), 
+            recovered_sd = sd(chile_cases$recovered))
+
+z <- unlist(summary_cases, use.names = FALSE)
+```
+
+Before we check the trend of COVID-19 cases in Chile, we want to know the lately total number of cases, and the deviation of the variables. The following table shows the newest total number of confirmed, recovered, dead cases and their standard deviations. We can see that the lately total confirmed cases in Chile is `r z[1]`, the lately total death cases is `r z[2]`, and the lately total recovered cases is `r z[3]`. Meanwhile, the sd of daily death cases is `r z[5]`, which is less than the daily confirmed `r z[4]` and the daily recovered `r z[6]`. That means although the confirmed and recovered cases fluctuate wildly, the daily death number is less volatility.
+
+```{r kable-output}
+summary_cases %>% 
+  kable(digits = 2, 
+        caption = "Summary of COVID-19 Cases in Chile Lately") %>% 
+  kable_styling(full_width = FALSE, position = "center")
+```
+
+
+#
+
+The following plot shows the trend of confirmed, recovered and dead cases by time.
+
+You can check the date and accurate number of cases by pointing at a point.
+
+We can see that the confirmed cases increased sharply from May, 2020. On 24 May, 30 May and 6 June, the point of confirmed cases jumped, showing the confirmed cases increased largely on that day. On 2 June and 17 June, there were significant increase in the number of recovered cases. The number of death cases grew stably, and the total cases death is 11321 on 1 Sept. In addition, the recovered cases increased more than 40,000 on 2 June, there may be a change in the definition of recovery.
+
+```{r ratio}
+ratios <- covid_chile_wide %>% 
+  filter(date > as.Date("2020-02-22")) %>% 
+  mutate(recover_cum = cumsum(recovered), 
+         confirm_cum = cumsum(confirmed), 
+         death_cum = cumsum(death))
+
+ratios <- ratios %>% 
+  mutate(recover_ratio = recover_cum / confirm_cum, 
+         death_ratio = death_cum / confirm_cum)
+```
+
+```{r trend-plot, fig.align='center'}
+covid_chile <- covid_chile %>% 
+  filter(date > as.Date("2020-02-22")) %>% 
+  group_by(factor(type)) %>% 
+  mutate(cases_cum = cumsum(cases)) %>% 
+  ungroup()
+
+plot_trend <- covid_chile %>% 
+  ggplot(aes(x = date, y = cases_cum, color = `factor(type)`)) + 
+  geom_point(size = 0.5) + 
+  scale_x_date(date_breaks = "1 month", date_labels = "%b") + 
+  scale_y_continuous(breaks = c(100000, 200000, 300000, 400000))
+
+
+ggplotly(plot_trend, tooltip = c("x", "y"))
+```
+
+#
+
+The next figure can help us checking the recover ratio and death ratio according to the cumulative confirmed cases. We can find that both recover and death ratio increased in April, 2020 while the cumulative confirmed cases increased slowly. In May, 2020, the cumulative confirmed cases increased quickly, and this made the recover and death ratio decreased since it takes several weeks to recover or die of the corona virus. From June to September, the number of confirmed cases keeps growing. The recover ratio keeps stable after July showing the treatment method becomes effective. The death ratio also keeps stable excepts an increasing in the middle of July. This maybe resulted in the missing report of death cases.
+
+
+```{r ratio-plots, fig.align='center'}
+plot_recover <- ratios %>% 
+  ggplot() + 
+  geom_point(aes(x = date, y = recover_ratio), 
+           color = "green", size = 0.1) + 
+  scale_x_date(date_breaks = "1 month", date_labels = "%b")
+
+plot_death <- ratios %>% 
+  ggplot() + 
+  geom_point(aes(x = date, y = death_ratio), 
+           color = "red", size = 0.1) + 
+  scale_x_date(date_breaks = "1 month", date_labels = "%b")
+
+plot_confirm_cum <- ratios %>% 
+  ggplot() + 
+  geom_point(aes(x = date, y = confirm_cum), 
+           color = "blue", size = 0.1) + 
+  scale_x_date(date_breaks = "1 month", date_labels = "%b")
+
+grid.arrange(plot_recover, plot_death, plot_confirm_cum, ncol = 1)
+```
+
+
+
+
+
+
+
 
 
 

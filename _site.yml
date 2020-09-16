@@ -3,17 +3,15 @@ navbar:
    left:
      - text: "Home"
        href: index.html
-     - text: "Daily Data in Chile"
+     - text: "Chile"
        href: daily.html
-     - text: "COVID-19 Trends in Chile"
-       href: trends.html
-     - text: "COVID-19 Cases in Bolivia"
+     - text: "Bolivia"
        href: Bolivia_trends.html
 output: 
   html_document:
     theme: sandstone
     include:
       after_body: footer.html
-    css: styles.ss
+    css: styles.css
 output_dir: docs
 
