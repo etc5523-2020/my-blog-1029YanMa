@@ -1,0 +1,151 @@
+# 
+
+# The daily COVID-19 cases data of Bolivia.
+
+# 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(tidyverse)
+library(coronavirus)
+library(DT)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+library(zoo)
+data(coronavirus)
+```
+
+The following data table shows the number of new cases confirmed, recovered, dead every day in Bolivia. And it also contains the recover and death radio calculated from cumulative cases. 
+
+You can try to type a date you are interested in and see the data of that day.
+
+```{r interactive-table}
+covid_bolivia <- coronavirus %>% 
+  filter(country == "Bolivia") %>% 
+  select(date, type, cases)
+
+covid_bolivia_wide <- covid_bolivia %>% 
+  pivot_wider(names_from = type, values_from = cases) 
+
+ratios_bolivia <- covid_bolivia_wide %>% 
+  filter(date > as.Date("2020-03-10")) %>% 
+  mutate(recover_cum = cumsum(recovered), 
+         confirm_cum = cumsum(confirmed), 
+         death_cum = cumsum(death))
+
+ratios_bolivia <- ratios_bolivia %>% 
+  mutate(recover_ratio = round(recover_cum / confirm_cum, 2), 
+         death_ratio = round(death_cum / confirm_cum, 2))
+
+ratios_bolivia %>% 
+  select(date, confirmed, confirm_cum, recovered, recover_ratio, 
+         death, death_ratio) %>% 
+  arrange(desc(date)) %>% 
+  datatable(extensions = 'Responsive', 
+            caption = "Daily COVID-19 Cases in Bolivia")
+```
+
+```{r ratioB}
+ratios_bolivia <- ratios_bolivia %>% 
+  mutate(recover_ratio = recover_cum / confirm_cum, 
+         death_ratio = death_cum / confirm_cum)
+```
+
+```{r trend-plotB, fig.align='center'}
+covid_bolivia <- covid_bolivia %>% 
+  filter(date > as.Date("2020-03-10")) %>% 
+  group_by(factor(type)) %>% 
+  mutate(cases_cum = cumsum(cases)) %>% 
+  ungroup()
+
+plot_trend_bolivia <- covid_bolivia %>% 
+  ggplot(aes(x = date, y = cases_cum / 1000, color = `factor(type)`)) + 
+  geom_point(size = 0.5) + 
+  scale_x_date(date_breaks = "1 month", date_labels = "%b") + 
+  scale_y_continuous(breaks = c(20, 40, 60, 80, 100, 120)) + 
+  ylab("cumulate cases (thousand)")
+
+
+ggplotly(plot_trend_bolivia, tooltip = c("x", "y"))
+```
+
+# Data Story 1: Check the trends of newly confirmed cases by 7-day / 14-day moving average.
+
+```{r 7day-avg}
+covid_bolivia <- covid_bolivia %>% 
+  filter(type == "confirmed") %>% 
+  dplyr::mutate(seven_day_Avg = rollmean(cases, k = 7, fill = NA), 
+                fourteen_day_Avg = rollmean(cases, k = 14, fill = NA)) 
+
+plot_avg_bolivia <- covid_bolivia %>% 
+  filter(date > as.Date("2020-03-10")) %>% 
+  ggplot() + 
+  geom_line(aes(x = date, y = seven_day_Avg), color = "blue") + 
+  geom_line(aes(x = date, y = fourteen_day_Avg), color = "green") 
+
+ggplotly(plot_avg_bolivia)
+```
+
+
+# Data story 2: Recovery / death ratio comparions between Chile and Bolivia.
+
+```{r compare-recovery}
+compare <- covid_chile_wide %>% 
+  left_join(covid_bolivia_wide, by = 'date') %>% 
+  filter(date > as.Date("2020-03-10")) %>% 
+  mutate(recover_ratio_chile = cumsum(recovered.x) / cumsum(confirmed.x), 
+         recover_ratio_bolivia = cumsum(recovered.y) / cumsum(confirmed.y))
+
+compare_long <- compare %>% 
+  select(date, recover_ratio_chile, recover_ratio_bolivia) %>% 
+  rename(Chile = recover_ratio_chile, 
+         Bolivia = recover_ratio_bolivia) %>% 
+  pivot_longer(2:3, names_to = "Country", values_to = "recovery_ratio")
+
+compare_long <- compare_long %>% 
+  mutate(Week = week(date)) %>% 
+  group_by(Week, Country) %>% 
+  summarise(weekly_recovery_ratio = mean(recovery_ratio)) 
+
+plot_compare <- compare_long %>% 
+  ggplot(aes(x = Week, y = weekly_recovery_ratio, fill = Country)) + 
+  geom_col(position = "dodge") 
+
+ggplotly(plot_compare)
+  
+```
+
+
+```{r compare-death}
+compare_death <- covid_chile_wide %>% 
+  left_join(covid_bolivia_wide, by = 'date') %>% 
+  filter(date > as.Date("2020-03-10")) %>% 
+  mutate(death_ratio_chile = cumsum(death.x) / cumsum(confirmed.x), 
+         death_ratio_bolivia = cumsum(death.y) / cumsum(confirmed.y))
+
+compare_death_long <- compare_death %>% 
+  select(date, death_ratio_chile, death_ratio_bolivia) %>% 
+  rename(Chile = death_ratio_chile, 
+         Bolivia = death_ratio_bolivia) %>% 
+  pivot_longer(2:3, names_to = "Country", values_to = "death_ratio")
+
+compare_death_long <- compare_death_long %>% 
+  mutate(Week = week(date)) %>% 
+  group_by(Week, Country) %>% 
+  summarise(weekly_death_ratio = mean(death_ratio)) 
+
+plot_compare_death <- compare_death_long %>% 
+  ggplot(aes(x = Week, y = weekly_death_ratio, fill = Country)) + 
+  geom_col(position = "dodge") + 
+  geom_hline(yintercept = 0.03, color = "orange", linetype = "dashed") + 
+  geom_hline(yintercept = 0.04, color = "orange", linetype = "dashed")
+
+ggplotly(plot_compare_death)
+```
+
+
+
+
+

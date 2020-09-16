@@ -4,9 +4,9 @@ navbar:
      - text: "Home"
        href: index.html
      - text: "Chile"
-       href: daily.html
+       href: Chile.html
      - text: "Bolivia"
-       href: Bolivia_trends.html
+       href: Bolivia.html
 output: 
   html_document:
     theme: sandstone

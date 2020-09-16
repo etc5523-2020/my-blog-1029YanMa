@@ -1,8 +1,10 @@
+# 
+
 # Welcome to my Coronavirus Tracking Website!
 
 # 
 
-### In this website, you can get the COVID-19 data of Chile and check the trends.
+### In this website, you can get the COVID-19 data of Chile and Bolivia and check the trends of cases.
 
 #
 
@@ -14,7 +16,7 @@ Chile, officially the Republic of Chile, is a country in western South America. 
 
 #### Blog 2 - Bolivia
 
-Bolivia, officially the Plurinational State of Bolivia, is a landlocked country located in western-central South America. The constitutional capital is Sucre, while the seat of government and executive capital is La Paz.  It is bordered to the north and east by Brazil, to the southeast by Paraguay, to the south by Argentina, **to the southwest by Chile (which we analysed in blog 1)**, and to the northwest by Peru. Bolivia has about 11 million population, with 1,098,581 km2 of area.
+Bolivia, officially the Plurinational State of Bolivia, is a landlocked country located in western-central South America. The constitutional capital is Sucre, while the seat of government and executive capital is La Paz.  It is bordered to the north and east by Brazil, to the southeast by Paraguay, to the south by Argentina, to the southwest by Chile (which we analysed in blog 1), and to the northwest by Peru. Bolivia has about 11 million population, with 1,098,581 km2 of area.
 
 #
 
