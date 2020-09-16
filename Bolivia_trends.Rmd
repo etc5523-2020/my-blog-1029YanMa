@@ -1,0 +1,52 @@
+# The daily COVID-19 cases data of Bolivia.
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(coronavirus)
+library(DT)
+library(lubridate)
+data(coronavirus)
+```
+
+The following data table shows the number of new cases confirmed, recovered, dead every day in Bolivia. And it also contains the recover and death radio calculated from cumulative cases. 
+
+You can try to type a date you are interested in and see the data of that day.
+
+```{r interactive-table}
+covid_bolivia <- coronavirus %>% 
+  filter(country == "Bolivia") %>% 
+  select(date, type, cases)
+
+covid_bolivia_wide <- covid_bolivia %>% 
+  pivot_wider(names_from = type, values_from = cases) 
+
+ratios_bolivia <- covid_bolivia_wide %>% 
+  filter(date > as.Date("2020-02-22")) %>% 
+  mutate(recover_cum = cumsum(recovered), 
+         confirm_cum = cumsum(confirmed), 
+         death_cum = cumsum(death))
+
+ratios_bolivia <- ratios_bolivia %>% 
+  mutate(recover_ratio = round(recover_cum / confirm_cum, 2), 
+         death_ratio = round(death_cum / confirm_cum, 2))
+
+ratios_bolivia %>% 
+  select(date, confirmed, confirm_cum, recovered, recover_ratio, 
+         death, death_ratio) %>% 
+  arrange(desc(date)) %>% 
+  datatable(extensions = 'Responsive', 
+            caption = "Daily COVID-19 Cases in Bolivia")
+```
+
+
+
+
+
+
+
+
+
+
