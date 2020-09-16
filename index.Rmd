@@ -30,4 +30,4 @@ Bolivia, officially the Plurinational State of Bolivia, is a landlocked country 
 
 - The variables of this data set are: `r names(coronavirus)`. As there's no province level data for Chile and Bolivia, we just concentrate on the type of cases and the number. 
 
-- The first case reported in Chile was on 23 Feb, 2020, while the first case reported in Blivia was 11 Mar, 2020. This website will display and discuss the daily cases after the day of first reported case.
+- The first case reported in Chile was on 23 Feb, 2020, while the first case reported in Blivia was 11 Mar, 2020.

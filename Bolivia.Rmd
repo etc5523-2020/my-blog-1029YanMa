@@ -111,7 +111,8 @@ compare_long <- compare_long %>%
 
 plot_compare <- compare_long %>% 
   ggplot(aes(x = Week, y = weekly_recovery_ratio, fill = Country)) + 
-  geom_col(position = "dodge") 
+  geom_col(position = "dodge") + 
+  scale_x_continuous(breaks = c(15, 20, 25, 30, 35, 40))
 
 ggplotly(plot_compare)
   
@@ -140,7 +141,8 @@ plot_compare_death <- compare_death_long %>%
   ggplot(aes(x = Week, y = weekly_death_ratio, fill = Country)) + 
   geom_col(position = "dodge") + 
   geom_hline(yintercept = 0.03, color = "orange", linetype = "dashed") + 
-  geom_hline(yintercept = 0.04, color = "orange", linetype = "dashed")
+  geom_hline(yintercept = 0.04, color = "orange", linetype = "dashed") + 
+  scale_x_continuous(breaks = c(15, 20, 25, 30, 35, 40)) 
 
 ggplotly(plot_compare_death)
 ```
