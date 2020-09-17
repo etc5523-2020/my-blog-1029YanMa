@@ -1,11 +1,16 @@
-# 
+---
+output: bookdown::html_document2
+theme: sandstone
+---
+
+\
 
 # The daily COVID-19 cases data of Bolivia.
 
-# 
+\
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(dplyr)
 library(tidyverse)
 library(coronavirus)
@@ -17,7 +22,7 @@ library(zoo)
 data(coronavirus)
 ```
 
-The following data table shows the number of new cases confirmed, recovered, dead every day in Bolivia. And it also contains the recover and death radio calculated from cumulative cases. 
+Table \@ref(tab:interactive-table) shows the number of new cases confirmed, recovered, dead every day in Bolivia. And it also contains the recover and death radio calculated from cumulative cases. Figure \@ref(fig:trend-plotB) shows the trends of cumulative confirmed, recovered and death cases in Bolivia by time.
 
 You can try to type a date you are interested in and see the data of that day.
 
@@ -53,7 +58,7 @@ ratios_bolivia <- ratios_bolivia %>%
          death_ratio = death_cum / confirm_cum)
 ```
 
-```{r trend-plotB, fig.align='center'}
+```{r trend-plotB, fig.cap="The trends of Confirmed, Recovered and Death Cases"}
 covid_bolivia <- covid_bolivia %>% 
   filter(date > as.Date("2020-03-10")) %>% 
   group_by(factor(type)) %>% 
@@ -71,9 +76,17 @@ plot_trend_bolivia <- covid_bolivia %>%
 ggplotly(plot_trend_bolivia, tooltip = c("x", "y"))
 ```
 
+
+\
+
+
 # Data Story 1: Check the trends of newly confirmed cases by 7-day / 14-day moving average.
 
-```{r 7day-avg}
+Figure \@ref(fig:moving-avg) shows the 7-day (the blue line) and 14-day (the green line) moving average of newly confirmed cases in Bolivia. The 7(or 14) days moving average is widely used to analyse the trend of the spread of COVID-19. A moving average means that it takes the past days of numbers, takes the average of those days, and plots it on the graph. For a 7-day moving average, it takes the last 7 days, adds them up, and divides it by 7. For a 14-day average, it will take the past 14 days. This method can effectively remove the curve fluctuation caused by daily data change (for example, we tested more people on weekdays than on weekends), while retaining the trend of data, helping us to see the trend of data more clearly.
+
+We can see that the newly confirmed cases in Bolivia have been increasing untill the middle of Junly and began to decline at the beginning of August. This is a positive sign that the epidemic has begun to slow down its spread in Bolivia.
+
+```{r moving-avg, fig.align='center', fig.cap="The 7(14)-day Moving Average of Newly Confirmed Cases"}
 covid_bolivia <- covid_bolivia %>% 
   filter(type == "confirmed") %>% 
   dplyr::mutate(seven_day_Avg = rollmean(cases, k = 7, fill = NA), 
@@ -83,13 +96,25 @@ plot_avg_bolivia <- covid_bolivia %>%
   filter(date > as.Date("2020-03-10")) %>% 
   ggplot() + 
   geom_line(aes(x = date, y = seven_day_Avg), color = "blue") + 
-  geom_line(aes(x = date, y = fourteen_day_Avg), color = "green") 
+  geom_line(aes(x = date, y = fourteen_day_Avg), color = "green") + 
+  ggtitle("7(14)-day Moving Average of Newly Confirmed Cases in Bolivia")
 
 ggplotly(plot_avg_bolivia)
 ```
 
 
+\
+
+
 # Data story 2: Recovery / death ratio comparions between Chile and Bolivia.
+
+\
+
+Figure \@ref(fig:compare-recovery) shows the weekly mean recovery ratios in Chile and Bolivia. The weely mean recovery ratio in Bolivia has increased from 30% to 65%, from the 31th week to now, while it's already 90% in the 28th week and reached 94% currently in Chile. Although the two countries are adjacent, there is a considerable gap in their recovery ratios from COVID-19.
+
+Figure \@ref(fig:compare-death) shows the weekly mean death ratios in Chile and Bolivia. According to the [WHO](https://www.who.int/docs/default-source/coronaviruse/situation-reports/20200306-sitrep-46-covid-19.pdf?sfvrsn=96b04adf_4), the worldwide death rates of COVID-19 is between 3% and 4%, which was represented by the orange dashed lines in the figure. The weely mean death ratio in Chile was increased before the 30th week, and after the 31th week, it keeps quite stable at about 2.7%. Worryingly, the weekly mean death ratios in Bolivia are more than 3%, and in many weeks, more than 4%.
+
+Both of figure \@ref(fig:compare-recovery) and \@ref(fig:compare-death) indicate that Bolivia is lagging behind Chile in both epidemic control and medical treatment. But it is encouraging to see that the 7-day and 14-day moving average of new cases has started to decline, which means the spread of COVID-19 in Bolivia is being controlled.
 
 ```{r compare-recovery}
 compare <- covid_chile_wide %>% 
@@ -112,7 +137,8 @@ compare_long <- compare_long %>%
 plot_compare <- compare_long %>% 
   ggplot(aes(x = Week, y = weekly_recovery_ratio, fill = Country)) + 
   geom_col(position = "dodge") + 
-  scale_x_continuous(breaks = c(15, 20, 25, 30, 35, 40))
+  scale_x_continuous(breaks = c(15, 20, 25, 30, 35, 40)) + 
+  ggtitle("Weekly Recovery Ratio Compare")
 
 ggplotly(plot_compare)
   
@@ -142,7 +168,8 @@ plot_compare_death <- compare_death_long %>%
   geom_col(position = "dodge") + 
   geom_hline(yintercept = 0.03, color = "orange", linetype = "dashed") + 
   geom_hline(yintercept = 0.04, color = "orange", linetype = "dashed") + 
-  scale_x_continuous(breaks = c(15, 20, 25, 30, 35, 40)) 
+  scale_x_continuous(breaks = c(15, 20, 25, 30, 35, 40)) + 
+  ggtitle("Weekly Death Ratio Compare")
 
 ggplotly(plot_compare_death)
 ```
