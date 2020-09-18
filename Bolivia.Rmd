@@ -63,7 +63,7 @@ plot_trend_bolivia <- covid_bolivia %>%
   geom_point(size = 0.5) + 
   scale_x_date(date_breaks = "1 month", date_labels = "%b") + 
   scale_y_continuous(breaks = c(20, 40, 60, 80, 100, 120)) + 
-  ylab("cumulate cases (thousand)") 
+  ylab("cumulative cases (thousand)") 
 
 ggplotly(plot_trend_bolivia, tooltip = c("x", "y"))
 ```
@@ -75,7 +75,7 @@ ggplotly(plot_trend_bolivia, tooltip = c("x", "y"))
 
 Figure \@ref(fig:moving-avg) shows the 7-day (the blue line) and 14-day (the green line) moving average of newly confirmed cases in Bolivia. The 7(or 14) days moving average is widely used to analyse the trend of the spread of COVID-19. A moving average means that it takes the past days of numbers, takes the average of those days, and plots it on the graph. For a 7-day moving average, it takes the last 7 days, adds them up, and divides it by 7. For a 14-day average, it will take the past 14 days. This method can effectively remove the curve fluctuation caused by daily data change (for example, we tested more people on weekdays than on weekends), while retaining the trend of data, helping us to see the trend of data more clearly.
 
-We can see that the newly confirmed cases in Bolivia have been increasing untill the middle of Junly and began to decline at the beginning of August. This is a positive sign that the epidemic has begun to slow down its spread in Bolivia.
+We can see that the newly confirmed cases in Bolivia have been increasing until the middle of July and began to decline at the beginning of August. This is a positive sign that the epidemic has begun to slow down its spread in Bolivia.
 
 ```{r moving-avg, fig.cap="The 7(14)-day Moving Average of Newly Confirmed Cases in Bolivia", out.height="60%"}
 covid_bolivia <- covid_bolivia %>% 
@@ -96,13 +96,13 @@ ggplotly(plot_avg_bolivia)
 
 
 
-# Data story 2: Recovery / death ratio comparions between Chile and Bolivia.
+# Data story 2: Recovery / death ratio comparisons between Chile and Bolivia.
 
 
 
-Figure \@ref(fig:compare-recovery) shows the weekly mean recovery ratios in Chile and Bolivia. The weely mean recovery ratio in Bolivia has increased from 30% to 65%, from the 31th week to now, while it's already 90% in the 28th week and reached 94% currently in Chile. Although the two countries are adjacent, there is a considerable gap in their recovery ratios from COVID-19.
+Figure \@ref(fig:compare-recovery) shows the weekly mean recovery ratios in Chile and Bolivia. The weekly mean recovery ratio in Bolivia has increased from 30% to 65%, from the 31th week to now, while it's already 90% in the 28th week and reached 94% currently in Chile. Although the two countries are adjacent, there is a considerable gap in their recovery ratios from COVID-19.
 
-Figure \@ref(fig:compare-death) shows the weekly mean death ratios in Chile and Bolivia. According to the [WHO](https://www.who.int/docs/default-source/coronaviruse/situation-reports/20200306-sitrep-46-covid-19.pdf?sfvrsn=96b04adf_4), the worldwide death rates of COVID-19 is between 3% and 4%, which was represented by the orange dashed lines in the figure. The weely mean death ratio in Chile was increased before the 30th week, and after the 31th week, it keeps quite stable at about 2.7%. Worryingly, the weekly mean death ratios in Bolivia are more than 3%, and in many weeks, more than 4%.
+Figure \@ref(fig:compare-death) shows the weekly mean death ratios in Chile and Bolivia. According to the [WHO](https://www.who.int/docs/default-source/coronaviruse/situation-reports/20200306-sitrep-46-covid-19.pdf?sfvrsn=96b04adf_4), the worldwide death rates of COVID-19 is between 3% and 4%, which was represented by the orange dashed lines in the figure. The weekly mean death ratio in Chile was increased before the 30th week, and after the 31th week, it keeps quite stable at about 2.7%. Worryingly, the weekly mean death ratios in Bolivia are more than 3%, and in many weeks, more than 4%.
 
 Both of figure \@ref(fig:compare-recovery) and \@ref(fig:compare-death) indicate that Bolivia is lagging behind Chile in both epidemic control and medical treatment. But it is encouraging to see that the 7-day and 14-day moving average of new cases has started to decline, which means the spread of COVID-19 in Bolivia is being controlled.
 
