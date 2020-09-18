@@ -1,3 +1,5 @@
+
+
 # The daily COVID-19 cases data of Chile.
 
 
@@ -46,12 +48,14 @@ ratios %>%
             caption = "Daily COVID-19 Cases in Chile")
 ```
 
+
+
 # Check the trends of COVID-19 cases in Chile.
 
 
 
-#
-#
+
+
 
 ```{r summary-cases}
 covid_chile <- coronavirus %>% 
@@ -85,7 +89,7 @@ summary_cases %>%
 ```
 
 
-#
+
 
 The following plot shows the trend of confirmed, recovered and dead cases by time.
 
@@ -122,7 +126,7 @@ plot_trend <- covid_chile %>%
 ggplotly(plot_trend, tooltip = c("x", "y"))
 ```
 
-#
+
 
 The next figure can help us checking the recover ratio and death ratio according to the cumulative confirmed cases. We can find that both recover and death ratio increased in April, 2020 while the cumulative confirmed cases increased slowly. In May, 2020, the cumulative confirmed cases increased quickly, and this made the recover and death ratio decreased since it takes several weeks to recover or die of the corona virus. From June to September, the number of confirmed cases keeps growing. The recover ratio keeps stable after July showing the treatment method becomes effective. The death ratio also keeps stable excepts an increasing in the middle of July. This maybe resulted in the missing report of death cases.
 

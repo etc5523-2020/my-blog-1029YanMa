@@ -8,8 +8,8 @@ navbar:
      - text: "Bolivia"
        href: Bolivia.html
 output: 
-  html_document:
-    theme: sandstone
+  bookdown::html_document2:
+    theme: cerulean
     include:
       after_body: footer.html
     css: styles.css
