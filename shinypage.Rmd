@@ -1,0 +1,34 @@
+
+```{r, include=FALSE}
+library("emo")
+```
+
+
+<h1>Shiny App for COVID-19 Data Explore</h1>
+<br>
+<h2>Introduction</h2>
+<br>
+<h2>Self Review</h2>
+<h3>`r emo::ji("gold")`Good Points</h3>
+
+- Automatically updated data:
+
+- Customizable analysis time period:
+
+- Multiple indicators:
+
+<br>
+<h3>`r emo::ji("pen")`To Be Improved</h3>
+
+- observe event and reactive functions
+
+<br>
+<h3>`r emo::ji("worker")`Addition points</h3>
+
+- A map which shows the number of new cases all over the world by color.
+
+
+<br>
+<h3>`r emo::ji("traffic")`Limitations</h3>
+
+- Technical limitation: Unable to select any country to explore it's data since I couldn't pull all the country names as a list.

@@ -11,7 +11,7 @@
 
 
 
-<title>index.utf8</title>
+<title>shinypage.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -309,25 +309,46 @@ $(document).ready(function () {
 </div>
 
 
-<p><strong>Welcome to my Coronavirus Tracking Website!</strong></p>
-<p>In this website, you can get the COVID-19 data of Chile and Bolivia and check the trends of cases.</p>
-<div id="analysis-country" class="section level1">
-<h1><span class="header-section-number">1</span> Analysis Country</h1>
-<p><strong>Blog 1 - Chile</strong></p>
-<p>Chile, officially the Republic of Chile, is a country in western South America. It occupies a long, narrow strip of land between the Andes to the east and the Pacific Ocean to the west. Chile covers an area of 756,096 square kilometers and has a population of 17.5 million as of 2017.</p>
-<p><strong>Blog 2 - Bolivia</strong></p>
-<p>Bolivia, officially the Plurinational State of Bolivia, is a landlocked country located in western-central South America. The constitutional capital is Sucre, while the seat of government and executive capital is La Paz. It is bordered to the north and east by Brazil, to the southeast by Paraguay, to the south by Argentina, to the southwest by Chile (which we analysed in blog 1), and to the northwest by Peru. Bolivia has about 11 million population, with 1,098,581 km2 of area.</p>
-</div>
-<div id="data-source" class="section level1">
-<h1><span class="header-section-number">2</span> Data Source</h1>
+<h1>
+Shiny App for COVID-19 Data Explore
+</h1>
+<br>
+<h2>
+Introduction
+</h2>
+<br>
+<h2>
+Self Review
+</h2>
+<h3>
+🥇Good Points
+</h3>
 <ul>
-<li><p>This webpage uses the COVID-19 data from the R package “coronavirus” which maintained by Rami Krispin.</p></li>
-<li><p>The data source of this package is the Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus <a href="https://systems.jhu.edu/research/public-health/ncov/">website</a>.</p></li>
-<li><p>This data set contains daily COVID-19 data of each country and is still updating so that we can track the latest COVID-19 data.</p></li>
-<li><p>The variables of this data set are: date, province, country, lat, long, type, cases. As there’s no province level data for Chile and Bolivia, we just concentrate on the type of cases and the number.</p></li>
-<li><p>The first case reported in Chile was on 23 Feb, 2020, while the first case reported in Blivia was 11 Mar, 2020.</p></li>
+<li><p>Automatically updated data:</p></li>
+<li><p>Customizable analysis time period:</p></li>
+<li><p>Multiple indicators:</p></li>
 </ul>
-</div>
+<br>
+<h3>
+🖊To Be Improved
+</h3>
+<ul>
+<li>observe event and reactive functions</li>
+</ul>
+<br>
+<h3>
+👨‍🏭Addition points
+</h3>
+<ul>
+<li>A map which shows the number of new cases all over the world by color.</li>
+</ul>
+<br>
+<h3>
+🚸Limitations
+</h3>
+<ul>
+<li>Technical limitation: Unable to select any country to explore it’s data since I couldn’t pull all the country names as a list.</li>
+</ul>
 
 <p>Copyright &copy; 2020 Yan Ma, Coronavirus Track Website.</p>
 

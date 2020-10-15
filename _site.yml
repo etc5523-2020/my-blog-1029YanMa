@@ -7,6 +7,8 @@ navbar:
        href: Chile.html
      - text: "Bolivia"
        href: Bolivia.html
+     - text: "Shiny App"
+       href: shinypage.html
 output: 
   bookdown::html_document2:
     theme: cerulean
