@@ -312,42 +312,61 @@ $(document).ready(function () {
 <h1>
 Shiny App for COVID-19 Data Explore
 </h1>
-<br>
+<p><br></p>
 <h2>
 Introduction
 </h2>
-<br>
+<p>🎯 This shiny app is aiming to explore the <strong>COVID-19 data</strong> of two neighboring countries: <strong>Chile</strong> and <strong>Bolivia</strong>. It’s interesting to explore the differences of how COVID-19 spread in countries near each other.</p>
+<p>📁 <strong>This app contains the daily data of: </strong></p>
+<ul>
+<li><p>Newly confirmed, recovered and dead cases</p></li>
+<li><p>The cumulative cases of confirmed, recovered and dead cases</p></li>
+<li><p>The ratio of recovery and death</p></li>
+</ul>
+<p>👨‍💻 <strong>Main sessions of this app: </strong></p>
+<ul>
+<li><p>Daily Cases Data of Your Selected Country.</p>
+<p>You can select the name of the country to see it’s daily data of COVID-19.</p></li>
+<li><p>Compare the Trends of New Confirmed Cases of Chile and Bolivia by Your Input Date Range.</p>
+<p>You can select the start and end of date, to compare the trends of newly confirmed cases in the two countries in your selected time period.</p></li>
+<li><p>Compare the Trends of Your Selected Indicator of Chile and Bolivia.</p>
+<p>You can select an indicator from: confirm_cum, recover_cum, death_cum, recover_ratio, death_ratio, and compare the trends of your selected indicator between the two countries to see trends in the spread of the epidemic in these two countries.</p></li>
+</ul>
+<p><br></p>
 <h2>
 Self Review
 </h2>
 <h3>
-🥇Good Points
+🥇Merits
 </h3>
 <ul>
-<li><p>Automatically updated data:</p></li>
-<li><p>Customizable analysis time period:</p></li>
-<li><p>Multiple indicators:</p></li>
+<li><p><strong>Automatically updated data:</strong> This shiny app uses the data from the Github version of “coronavirus” package, which is updated on a daily bases. The update_dataset() function of this package enable our shiny app updates it’s data automatically as long as there’s new data in the original data source – Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) Coronavirus <a href="https://github.com/CSSEGISandData/COVID-19">repository</a>.</p></li>
+<li><p><strong>Customizable analysis time period: </strong>This shiny app contains a customizable date range input to enable users select the date range they are interested in to see the trend of newly confirmed cases in that time period. For example, if you would like to see the effect of a COVID related policy, you can select the time period around the date which the policy was issued, to see whether it works as expected.</p></li>
+<li><p><strong>Multiple indicators:</strong> In this app, for each country, on each day, it provides the data of newly confirmed / recovered / dead cases (confirmed / recovered / death), cumulative confirmed / recovered / dead cases (confirm_cum / recover_cum / death_cum), percentage of recovered / dead cases (recover_ratio / death_ratio).</p></li>
+<li><p><strong>Comparision between countries:</strong> At this stage, this app was designed to compare the daily data and indicators between Chile and Bolivia. Since the two countries are near each other, it’s reasonable to compare their data trends and figure out why the numbers are different.</p></li>
 </ul>
 <br>
 <h3>
 🖊To Be Improved
 </h3>
 <ul>
-<li>observe event and reactive functions</li>
+<li><p>The use of “observeEvent” and “reactive” functions: I think it’s better to make all the plots share the user’s input, and this will help the app become more powerful to explore the COVID-19 data. However, I haven’t managed to make these functions work properly.</p></li>
+<li><p>Visual appealing: When I went through the official COVID-19 dashboards, I found that the typesetting was very compact, which was also lacking in my work.</p></li>
 </ul>
 <br>
 <h3>
 👨‍🏭Addition points
 </h3>
 <ul>
-<li>A map which shows the number of new cases all over the world by color.</li>
+<li>A map which shows the number of new cases all over the world by color would be plausible too add. This can help users see at a glance where the epidemic is most severe on a given date. In addition, if the data gap between neighboring countries and regions is large, countries with severe outbreaks can refer to the effective measures of neighboring countries. This map can help to quickly find countries worth referring to.</li>
 </ul>
 <br>
 <h3>
-🚸Limitations
+⛔Limitations
 </h3>
 <ul>
-<li>Technical limitation: Unable to select any country to explore it’s data since I couldn’t pull all the country names as a list.</li>
+<li><p>Technical limitation: There are only two countries to select currently. Unable to select any country to explore it’s data, since I haven’t managed to pull all the country names as a list.</p></li>
+<li><p>User experience: Using Github (dev) version R packages may affect the user experience of those who are not familiar with the devtools package. In addtion, the update of the data set will take a few seconds, which slows down the app when it was run for the first time.</p></li>
 </ul>
 
 <p>Copyright &copy; 2020 Yan Ma, Coronavirus Track Website.</p>
