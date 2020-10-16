@@ -22,15 +22,15 @@ library("emo")
 
 `r emo::ji("inventor")` **Main sessions of this app: **
 
-- Daily Cases Data of Your selected Country. 
+- Daily cases data of your selected country. 
 
   You can select the name of the country to see it's daily data of COVID-19.
 
-- Compare the Trends of New Confirmed Cases of Chile and Bolivia by Your Input Date Range.
+- Compare the trends of new confirmed cases of Chile and Bolivia by your input date range.
 
   You can select the start and end of date, to compare the trends of newly confirmed cases in the two countries in your selected time period.
 
-- Compare the Trends of Your Selected Indicator of Chile and Bolivia.
+- Compare the trends of your selected indicator of Chile and Bolivia.
 
   You can select an indicator from: confirm_cum, recover_cum, death_cum, recover_ratio, death_ratio, and compare the trends of your selected indicator between the two countries to see trends in the spread of the epidemic in these two countries.
 
