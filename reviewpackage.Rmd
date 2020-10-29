@@ -1,0 +1,89 @@
+```{r, include=FALSE}
+library("emo")
+```
+
+<h1>R package peer review</h1>
+<br>
+
+
+<h3>Basic information of the package</h3>
+
+- Author: Justin Thomas
+
+- Name of package: cov20
+
+- Reviewer: Yan Ma
+
+**This "cov20" package provides three datasets and three functions related to the COVID-19 cases.**
+
+**- Datasets:**
+
+**"data 2"** contains daily confirmed new cases, new deaths and cumulative confirmed cases in each country.
+
+**"data3"** contains country name, recently cumulative cases and cumulative deaths of each country. 
+
+**"data5"** contains cumulative cases of each Australian state over a time period of February 2020 to October 2020.
+
+**- Functions:**
+
+The first function is **"launch_app()"**, which enable the users to launch the shiny app.
+
+The second function is **"selectui01()"**, according to the documentation, it "creates a drop-down list and displays options for countries and states to select from in the application".
+
+The third function is **"leafserv()"**, which "generates a map of your desired country in the application". 
+
+<br>
+
+<h3>Package Explore</h3>
+<br>
+
+`r emo::ji("inventor")`**What I think this package will do VS what it does: **
+
+- Provide COVID-19 cases data. 
+
+  Yes, this package provides both daily data and cumulative data, and the datasets covered many countries.
+  
+- Launch the shiny app within a function.
+
+  Yes, by running the "launch_app()" function, I got the shiny app and it worked as expected.
+  
+- Select one input from the given options by running the "selectui01()" function and get a data table or a figure.
+
+  No, the documentation for this function is quite short and doesn't provide enough information on how to use it. When I copy the example and paste it in my console, an error happened. Then I tried to pass some params into this function, for example, "selectui01('Australia')". I got lots of duplicate text output which is difficult to understand.
+
+- Some map stuff by runing the "leafserv()" function, since the name of function indicates the using of leaflet map.
+
+  Yes, I can see a nice map with markers on it by running this function.
+
+`r emo::ji("pen")`**Potential Improvements:**
+
+- Improvements on documentation: If the documentation contains some "real" examples, it will be much easier for the users to use this package. The current documentation is not sufficient to get started for me.
+
+- Improvements on the package: For the function "leafserv()", it requires long, lat and the name of the country to generate a map. But in the datasets provided by this package, there are only locations of states of Australia. If the users want to make a map of another country, they have to get the location information from an other place. This makes things difficult.
+
+`r emo::ji("file")`**What I Learnt:**
+
+Firstly, documentation for a package is very important. When reviewing other students' work, I found that what I think is easy to understand may be difficult for the users. We must write the documentations and vignettes very carefully and always repeat ourselves so that the users can find how to use the package easily. 
+
+Secondly, examples are useful tools to communicate with our users. Running the examples is the most straightforward way to see how the package works. If the users can't fully understand the text explanation, they can try to run some examples and to see the results.
+
+Lastly, creating a package should follow a normal structure. It's more efficient to learn how to use a package if it has a same structure with the packages we usually use.
+
+<h3>Review Checklist</h3>
+<br>
+<h5>Documentation</h5>
+<input type="checkbox" checked>**Installation instructions:** for the package is found in README</input>
+
+<input type="checkbox" checked>**Vignette(s)** demonstrating major functionality that runs successfully locally</input>
+
+<input type="checkbox" checked>**Function Documentation:** for all exported functions in R help</input>
+
+<input type="checkbox" checked>**Examples** for all exported functions in R Help that run successfully locally</input>
+
+<h5>Functionality</h5>
+
+<input type="checkbox" checked>**Installation:** Installation succeeds as documented.</input>
+
+<input type="checkbox" checked>**Functionality:** Any functional claims of the software been confirmd.</input>
+
+<input type="checkbox" checked>**Automated tests:** Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.</input>

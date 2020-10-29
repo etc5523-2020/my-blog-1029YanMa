@@ -9,6 +9,8 @@ navbar:
        href: Bolivia.html
      - text: "Shiny App"
        href: shinypage.html
+     - text: "Package Review"
+       href: reviewpackage.html
 output: 
   bookdown::html_document2:
     theme: cerulean
