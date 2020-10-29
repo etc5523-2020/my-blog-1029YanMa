@@ -2,11 +2,11 @@
 library("emo")
 ```
 
-<h1>R package peer review</h1>
+<h1>R Package Peer Review</h1>
 <br>
 
 
-<h3>Basic information of the package</h3>
+<h3>Basic Information of the Package</h3>
 
 - Author: Justin Thomas
 
@@ -51,7 +51,7 @@ The third function is **"leafserv()"**, which "generates a map of your desired c
 
   No, the documentation for this function is quite short and doesn't provide enough information on how to use it. When I copy the example and paste it in my console, an error happened. Then I tried to pass some params into this function, for example, "selectui01('Australia')". I got lots of duplicate text output which is difficult to understand.
 
-- Some map stuff by runing the "leafserv()" function, since the name of function indicates the using of leaflet map.
+- Some map stuff by running the "leafserv()" function, since the name of function indicates the using of leaflet map.
 
   Yes, I can see a nice map with markers on it by running this function.
 
@@ -84,6 +84,6 @@ Lastly, creating a package should follow a normal structure. It's more efficient
 
 <input type="checkbox" checked>**Installation:** Installation succeeds as documented.</input>
 
-<input type="checkbox" checked>**Functionality:** Any functional claims of the software been confirmd.</input>
+<input type="checkbox" checked>**Functionality:** Any functional claims of the software been confirmed.</input>
 
 <input type="checkbox" checked>**Automated tests:** Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.</input>
