@@ -34,8 +34,7 @@ The third function is **"leafserv()"**, which "generates a map of your desired c
 
 <br>
 
-<h3>Package Explore</h3>
-<br>
+<h3>Package Review</h3>
 
 `r emo::ji("inventor")`**What I think this package will do VS what it does: **
 
@@ -63,11 +62,13 @@ The third function is **"leafserv()"**, which "generates a map of your desired c
 
 `r emo::ji("file")`**What I Learnt:**
 
-Firstly, documentation for a package is very important. When reviewing other students' work, I found that what I think is easy to understand may be difficult for the users. We must write the documentations and vignettes very carefully and always repeat ourselves so that the users can find how to use the package easily. 
+- Firstly, documentation for a package is very important. When reviewing other students' work, I found that what I think is easy to understand may be difficult for the users. We must write the documentations and vignettes very carefully and always repeat ourselves so that the users can find how to use the package easily. 
 
-Secondly, examples are useful tools to communicate with our users. Running the examples is the most straightforward way to see how the package works. If the users can't fully understand the text explanation, they can try to run some examples and to see the results.
+- Secondly, examples are useful tools to communicate with our users. Running the examples is the most straightforward way to see how the package works. If the users can't fully understand the text explanation, they can try to run some examples and to see the results.
 
-Lastly, creating a package should follow a normal structure. It's more efficient to learn how to use a package if it has a same structure with the packages we usually use.
+- Lastly, creating a package should follow a normal structure. It's more efficient to learn how to use a package if it has a same structure with the packages we usually use.
+
+<br>
 
 <h3>Review Checklist</h3>
 <br>
