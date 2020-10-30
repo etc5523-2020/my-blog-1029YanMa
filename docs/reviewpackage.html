@@ -324,7 +324,7 @@ Basic Information of the Package
 <li><p>Name of package: cov20</p></li>
 <li><p>Reviewer: Yan Ma</p></li>
 </ul>
-<p><strong>This “cov20” package provides three datasets and three functions related to the COVID-19 cases.</strong></p>
+<p>This “cov20” package provides <strong>three datasets and three functions related to the COVID-19 cases</strong>. Here’s an <strong>overview</strong> of this package.</p>
 <p><strong>- Datasets:</strong></p>
 <p><strong>“data 2”</strong> contains daily confirmed new cases, new deaths and cumulative confirmed cases in each country.</p>
 <p><strong>“data3”</strong> contains country name, recently cumulative cases and cumulative deaths of each country.</p>
@@ -344,13 +344,14 @@ Package Review
 <li><p>Launch the shiny app within a function.</p>
 <p>Yes, by running the “launch_app()” function, I got the shiny app and it worked as expected.</p></li>
 <li><p>Select one input from the given options by running the “selectui01()” function and get a data table or a figure.</p>
-<p>No, the documentation for this function is quite short and doesn’t provide enough information on how to use it. When I copy the example and paste it in my console, an error happened. Then I tried to pass some params into this function, for example, “selectui01(‘Australia’)”. I got lots of duplicate text output which is difficult to understand.</p></li>
+<p>No, the documentation for this function is quite short and doesn’t provide enough information on how to use it. When I copy the example in the README file and paste it in my console, an error happened. Then I tried to pass some params into this function, for example, “selectui01(‘Australia’)” or run the example in the help file. I got lots of duplicate text output which is difficult to understand.</p></li>
 <li><p>Some map stuff by running the “leafserv()” function, since the name of function indicates the using of leaflet map.</p>
 <p>Yes, I can see a nice map with markers on it by running this function.</p></li>
 </ul>
 <p>🖊<strong>Potential Improvements:</strong></p>
 <ul>
 <li><p>Improvements on documentation: If the documentation contains some “real” examples, it will be much easier for the users to use this package. The current documentation is not sufficient to get started for me.</p></li>
+<li><p>Improvements on the code: For the selectui function, my suggestion is to use unique() or something similar to get rid of the duplicate records. A long output is painful for users.</p></li>
 <li><p>Improvements on the package: For the function “leafserv()”, it requires long, lat and the name of the country to generate a map. But in the datasets provided by this package, there are only locations of states of Australia. If the users want to make a map of another country, they have to get the location information from an other place. This makes things difficult.</p></li>
 </ul>
 <p>📁<strong>What I Learnt:</strong></p>
@@ -359,11 +360,13 @@ Package Review
 <li><p>Secondly, examples are useful tools to communicate with our users. Running the examples is the most straightforward way to see how the package works. If the users can’t fully understand the text explanation, they can try to run some examples and to see the results.</p></li>
 <li><p>Lastly, creating a package should follow a normal structure. It’s more efficient to learn how to use a package if it has a same structure with the packages we usually use.</p></li>
 </ul>
-<p><br></p>
+<p>🏅<strong>In Addition: </strong></p>
+<p>What I want to say is, although there’s something not perfect, this package is quite well structured and has all the necessary files. And the package passed the R CMD check without errors. The tests of the functions also passed the auto check. Overall, great job!</p>
+<br>
 <h3>
 Review Checklist
 </h3>
-<br>
+<p>This package review was conducted by the follwing steps.</p>
 <h5>
 Documentation
 </h5>
